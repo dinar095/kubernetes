@@ -8,4 +8,5 @@ RUN rm /etc/nginx/conf.d/default.conf
 RUN mkdir -p /run/nginx
 EXPOSE 80 443
 RUN chmod +x /tmp/script.sh
-CMD ["/tmp/script.sh"]
+WORKDIR /tmp
+CMD ["sh", "script.sh"]
