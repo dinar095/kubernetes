@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-svc
+  labels:
+    env: prod
+    owner: desausag
+spec:
+  selector:
+      project: nginx
+  ports:
+    - protocol: TCP
+      port: 443
+      targetPort: 443
+  type: LoadBalancer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  labels:
+    app: nginx #его лейбл
+spec: #С какими подами будет работать с проджект кгб
+  replicas: 1
+  selector:
+    matchLabels:
+      project: nginx
+  template:
+    metadata:
+      labels:
+        project: nginx
+    spec:
+      containers:
+        - name: nginx
+          image: nginx
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 443
