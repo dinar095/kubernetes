@@ -1,5 +1,5 @@
-FROM alpine:3.12
-RUN apk add openssl openssh nginx supervisor
+FROM alpine_local
+RUN apk add openssl openssh
 COPY srcs/nginx.conf /etc/nginx/conf.d
 COPY srcs/supervisor.conf /etc/supervisord.conf
 COPY srcs/script.sh /tmp/

@@ -1,7 +1,7 @@
-FROM alpine:3.12
+FROM alpine_local
 
 # optionally:
-RUN apk add vim supervisor wget vsftpd openrc vsftpd-doc openssl
+RUN apk add wget vsftpd openrc vsftpd-doc openssl
 RUN openssl req -x509 -nodes -days 365 -subj "/C=RU/ST=Russia/L=Kazan/O=School21/OU=21School/CN=myssl" -newkey rsa:2048 -keyout /etc/ssl/vsftpd.key -out /etc/ssl/vsftpd.crt
 
 

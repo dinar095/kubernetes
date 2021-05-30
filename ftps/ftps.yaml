@@ -5,13 +5,19 @@ metadata:
   labels:
     env: prod
     owner: desausag
+  annotations:
+    metallb.universe.tf/allow-shared-ip: main-claster
+  spec:
 spec:
   selector:
-    project: ftps
+    project: ftps-lbl
   ports:
-    - protocol: TCP
-      port: 21
-      targetPort: 21
+    - port: 21
+      name: ftp21
+      protocol: TCP
+    - port: 30021
+      name: ftp30021
+      protocol: TCP
   type: LoadBalancer
 ---
 apiVersion: apps/v1
@@ -19,20 +25,21 @@ kind: Deployment
 metadata:
   name: ftps
   labels:
-    project: ftps #его лейбл
+    project: ftps-deploy #его лейбл
 spec: #С какими подами будет работать с проджект кгб
   replicas: 1
   selector:
     matchLabels:
-      project: ftps
+      project: ftps-lbl
   template:
     metadata:
       labels:
-        project: ftps
+        project: ftps-lbl
     spec:
       containers:
-        - name: ftps
+        - name: ftps-lbl
           image: ftps
           imagePullPolicy: Never
           ports:
             - containerPort: 21
+            - containerPort: 30021
