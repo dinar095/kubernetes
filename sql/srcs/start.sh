@@ -1,8 +1,7 @@
 #!/bin/sh
-
-sed -i "s|.*skip-networking.*|#skip-networking|g" /etc/my.cnf.d/mariadb-server.cnf
 /etc/init.d/mariadb setup
-/etc/init.d/mariadb start
+sed -i "s|.*skip-networking.*|#skip-networking|g" /etc/my.cnf.d/mariadb-server.cnf
+/etc/init.d/mariadb restart
 PASSWDDB='1234'
 MAINDB='wordpress'
 USER='admin'
