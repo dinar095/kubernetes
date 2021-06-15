@@ -2,10 +2,6 @@
 # sh docker_setup.sh
 # from https://gist.github.com/gcamerli/b8cf836f8627cb285f33086db10096a2
 GOINFRE="/goinfre/$USER";
-echo $GOINFRE
-rm -fr ~/.minikube/
-mkdir -p $GOINFRE/.minikube
-ln -sf $GOINFRE/.minikube ~/.minikube
 mkdir -p $GOINFRE/Caches
 mkdir -p $GOINFRE/Caches/com.docker.docker
 rm -rf ~/Library/Caches/com.docker.docker
