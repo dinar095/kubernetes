@@ -31,7 +31,7 @@ spec:
         app: ftps-lbl
     spec:
       containers:
-        - image: ftps
+        - image: ftps_img
           imagePullPolicy: Never
           name: ftps
           ports:

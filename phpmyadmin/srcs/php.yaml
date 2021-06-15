@@ -5,12 +5,13 @@ metadata:
   annotations:
     metallb.universe.tf/allow-shared-ip: main-claster
 spec:
-  type: LoadBalancer
-  ports:
-    - port: 5000
-      protocol: TCP
   selector:
     app: php-lbl
+  ports:
+    - protocol: TCP
+      port: 5000
+      targetPort: 5000
+  type: LoadBalancer
 ---
 apiVersion: apps/v1
 kind: Deployment
