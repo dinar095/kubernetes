@@ -27,16 +27,8 @@ spec:
         app: php-lbl
     spec:
       containers:
-        - image: php_img
+        - image: phpmyadmin
           imagePullPolicy: Never
           name: phpmyadmin
-          env:
-            - name: WORDPRESS_DB_HOST
-              value: 'sql-svc'
-            - name: WORDPRESS_DB_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: mysql-pass
-                  key: password
           ports:
             - containerPort: 5000

@@ -11,8 +11,8 @@ docker build phpmyadmin/. -t phpmyadmin
 docker pull metallb/speaker:v0.8.2
 docker pull metallb/controller:v0.8.2
 kubectl apply -f configmap.yaml
-kubectl apply -f nginx/nginx.yaml
-kubectl apply -f ftps/ftps.yaml
-kubectl apply -f wordpress/wp.yaml
-kubectl apply -f phpmyadmin/php.yaml
+kubectl apply -f nginx/srcs/nginx.yaml
+kubectl apply -f ftps/srcs/ftps.yaml
+kubectl apply -f wordpress/srcs/wp.yaml
+kubectl apply -f phpmyadmin/srcs/php.yaml
 minikube dashboard

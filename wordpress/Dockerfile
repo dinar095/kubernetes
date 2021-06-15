@@ -8,5 +8,7 @@ RUN wget http://wordpress.org/latest.tar.gz -P /usr/share/webapps/
 RUN tar -C /usr/share/webapps/ -xzvf /usr/share/webapps/latest.tar.gz && rm /usr/share/webapps/latest.tar.gz
 RUN ln -s /usr/share/webapps/wordpress/ /var/www/localhost/wordpress
 COPY srcs/nginx.conf /etc/nginx/conf.d/default.conf
+COPY srcs/supervisord.conf /etc/supervisord.conf
 EXPOSE 5050
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
+# CMD sh
