@@ -1,6 +1,7 @@
 #!/bin/sh
-minikube delete
-minikube start --driver=virtualbox --addons=metallb
+#minikube delete
+#minikube start --driver=virtualbox --addons=metallb
+REM @FOR /f "tokens=*" %i IN ('minikube -p minikube docker-env') DO @%i
 eval $(minikube -p minikube docker-env)
 docker build . -t alpine_local
 docker build sql/. -t sql
@@ -17,8 +18,8 @@ kubectl apply -f wordpress/srcs/wp.yaml
 kubectl apply -f phpmyadmin/srcs/php.yaml
 minikube dashboard
 
-#kubectl delete -f configmap.yaml
-#kubectl delete -f nginx/srcs/nginx.yaml
-#kubectl delete -f ftps/srcs/ftps.yaml
-#kubectl delete -f wordpress/srcs/wp.yaml
-#kubectl delete -f phpmyadmin/srcs/php.yaml
+kubectl delete -f configmap.yaml
+kubectl delete -f nginx/srcs/nginx.yaml
+kubectl delete -f ftps/srcs/ftps.yaml
+kubectl delete -f wordpress/srcs/wp.yaml
+kubectl delete -f phpmyadmin/srcs/php.yaml
