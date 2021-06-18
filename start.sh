@@ -6,7 +6,7 @@ eval $(minikube -p minikube docker-env)
 docker build . -t alpine_local
 docker build sql/. -t sql
 docker build ftps/. -t ftps_img
-docker build nginx/. -t nginx_img
+docker build nginx/. -t nginx-img
 docker build wordpress/. -t wordpress
 docker build phpmyadmin/. -t phpmyadmin
 docker pull metallb/speaker:v0.8.2

@@ -33,7 +33,7 @@ spec:
         app: nginx-lbl
     spec:
       containers:
-        - image: nginx
+        - image: nginx-img
           imagePullPolicy: Never
           name: nginx
           ports:
