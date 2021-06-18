@@ -6,7 +6,7 @@ eval $(minikube -p minikube docker-env)
 docker build . -t alpine_local
 docker build sql/. -t sql
 docker build ftps/. -t ftps_img
-docker build nginx/. -t nginx
+docker build nginx/. -t nginx_img
 docker build wordpress/. -t wordpress
 docker build phpmyadmin/. -t phpmyadmin
 docker pull metallb/speaker:v0.8.2
@@ -18,8 +18,8 @@ kubectl apply -f wordpress/srcs/wp.yaml
 kubectl apply -f phpmyadmin/srcs/php.yaml
 minikube dashboard
 
-kubectl delete -f configmap.yaml
-kubectl delete -f nginx/srcs/nginx.yaml
-kubectl delete -f ftps/srcs/ftps.yaml
-kubectl delete -f wordpress/srcs/wp.yaml
-kubectl delete -f phpmyadmin/srcs/php.yaml
+#kubectl delete -f configmap.yaml
+#kubectl delete -f nginx/srcs/nginx.yaml
+#kubectl delete -f ftps/srcs/ftps.yaml
+#kubectl delete -f wordpress/srcs/wp.yaml
+#kubectl delete -f phpmyadmin/srcs/php.yaml

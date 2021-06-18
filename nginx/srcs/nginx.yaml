@@ -4,37 +4,38 @@ metadata:
   name: nginx-svc
   annotations:
     metallb.universe.tf/allow-shared-ip: main-claster
-  labels:
-    env: prod
-    owner: desausag
 spec:
-  selector:
-      app: nginx
-  ports:
-    - protocol: TCP
-      port: 443
-      targetPort: 443
   type: LoadBalancer
+  ports:
+    - port: 80
+      name: http
+      protocol: TCP
+      targetPort: 80
+    - port: 443
+      name: https
+      protocol: TCP
+      targetPort: 443
+  selector:
+    app: nginx-lbl
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-deployment
-  labels:
-    app: nginx #его лейбл
-spec: #С какими подами будет работать с проджект кгб
+  name: nginx-deploy
+spec:
   replicas: 1
   selector:
     matchLabels:
-      project: nginx
+      app: nginx-lbl
   template:
     metadata:
       labels:
-        project: nginx
+        app: nginx-lbl
     spec:
       containers:
-        - name: nginx
-          image: nginx
+        - image: nginx
           imagePullPolicy: Never
+          name: nginx
           ports:
+            - containerPort: 80
             - containerPort: 443
