@@ -2,8 +2,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: ftps-svc
-#  annotations:
-#    metallb.universe.tf/allow-shared-ip: main-claster
+  annotations:
+    metallb.universe.tf/allow-shared-ip: main-claster
 spec:
   type: LoadBalancer
   ports:

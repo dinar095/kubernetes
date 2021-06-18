@@ -1,7 +1,7 @@
 #!/bin/sh
-#minikube delete
-#minikube start --driver=virtualbox --addons=metallb
-REM @FOR /f "tokens=*" %i IN ('minikube -p minikube docker-env') DO @%i
+minikube delete
+minikube start --driver=virtualbox --addons=metallb
+#REM @FOR /f "tokens=*" %i IN ('minikube -p minikube docker-env') DO @%i
 eval $(minikube -p minikube docker-env)
 docker build . -t alpine_local
 docker build sql/. -t sql
