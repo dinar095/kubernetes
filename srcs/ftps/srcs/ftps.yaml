@@ -5,35 +5,37 @@ metadata:
   annotations:
     metallb.universe.tf/allow-shared-ip: main-claster
 spec:
+  selector:
+    app: ftps
   type: LoadBalancer
   ports:
-    - port: 21
-      name: ftp21
-      protocol: TCP
-    - port: 30021
-      name: ftp30021
-      protocol: TCP
-  selector:
-    app: ftps-lbl
+    - protocol: TCP
+      name: ftps
+      port: 21
+      targetPort: 21
+    - protocol: TCP
+      name: ftps-passive
+      port: 1500
+      targetPort: 1500
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ftps-deploy
+  name: ftps-deployment
 spec:
-  replicas: 1
   selector:
     matchLabels:
-      app: ftps-lbl
+      app: ftps
+  replicas: 1
   template:
     metadata:
       labels:
-        app: ftps-lbl
+        app: ftps
     spec:
       containers:
-        - image: ftps_img
+        - name: ftps
+          image: ftps_img
           imagePullPolicy: Never
-          name: ftps
           ports:
             - containerPort: 21
-            - containerPort: 30021
+            - containerPort: 1500

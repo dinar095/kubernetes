@@ -1,19 +1,15 @@
-FROM alpine:3.12
+FROM	alpine:3.7
 
-# optionally:
-RUN apk add vim supervisor wget vsftpd openrc vsftpd-doc openssl
-RUN openssl req -x509 -nodes -days 365 -subj "/C=RU/ST=Russia/L=Kazan/O=School21/OU=21School/CN=myssl" -newkey rsa:2048 -keyout /etc/ssl/vsftpd.key -out /etc/ssl/vsftpd.crt
+#install
 
+RUN		apk update && apk upgrade && apk add vsftpd openrc openssl openssh
+RUN		rc-update add vsftpd default
 
-# insert my configs:
-RUN     mv /etc/vsftpd/vsftpd.conf /etc/vsftpd/vsftpd.conf.backup
-COPY    srcs/vsftpd.conf /etc/vsftpd/vsftpd.conf
-COPY    srcs/vsftpd.userlist /etc/vsftpd/vsftpd.userlist
-
-# copy scripts:
-COPY    srcs/start.sh /tools/start.sh
-RUN     chmod +x /tools/start.sh
-
-EXPOSE 21 30021
-
-CMD ["sh", "/tools/start.sh"]
+COPY	./srcs/vsftpd.conf ./etc/vsftpd/vsftpd.conf
+RUN 	openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/ftps.key \
+    	-out /etc/ssl/certs/ftps.crt -subj "/C=RU/ST=Kazan/L=Kazan/O=21/OU=School/CN=ejolyn"
+RUN 	adduser -D user && echo "user:user" | chpasswd
+RUN 	chmod +x /home/user && touch /var/log/vsftpd.log
+# RUN		rc-service vsftpd restart
+EXPOSE	21 1500
+ENTRYPOINT	vsftpd /etc/vsftpd/vsftpd.conf

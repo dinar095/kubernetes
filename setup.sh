@@ -22,12 +22,3 @@ kubectl apply -f srcs/phpmyadmin/srcs/php.yaml
 kubectl apply -f srcs/influxdb/srcs/influx.yaml
 kubectl apply -f srcs/grafana/srcs/grafana.yaml
 minikube dashboard
-
-#kubectl delete -f configmap.yaml
-#kubectl delete -f nginx/srcs/nginx.yaml
-#kubectl delete -f ftps/srcs/ftps.yaml
-#kubectl delete -f srcs/wordpress/srcs/wp.yaml
-#kubectl delete -f phpmyadmin/srcs/php.yaml
-#kubectl delete -f srcs/grafana/srcs/grafana.yaml
-docker build srcs/ftps/. -t ftps_img
-kubectl delete -f srcs/ftps/srcs/ftps.yaml
