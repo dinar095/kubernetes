@@ -9,4 +9,6 @@ mysql -e "CREATE DATABASE ${MAINDB} /*\!40100 DEFAULT CHARACTER SET utf8 */;"
 mysql -e "CREATE USER $USER@'' IDENTIFIED BY '${PASSWDDB}';"
 mysql -e "GRANT ALL PRIVILEGES ON ${MAINDB}.* TO '${USER}'@'%';"
 mysql -e "FLUSH PRIVILEGES;"
-/usr/bin/supervisord -c /etc/supervisord.conf
+
+mysql wordpress < /data/wordpress.sql
+#/usr/bin/supervisord -c /etc/supervisord.conf
