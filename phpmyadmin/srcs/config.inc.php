@@ -13,9 +13,6 @@ $cfg['Servers'][$i]['auth_type'] = 'cookie';
 /* Server parameters */
 $cfg['Servers'][$i]['host'] = 'sql-svc:3306';
 $cfg['Servers'][$i]['password'] = '1234';
-// $cfg['Servers'][$i]['host'] = getenv('WORDPRESS_DB_HOST');
-// $cfg['Servers'][$i]['password'] = getenv('WORDPRESS_DB_PASSWORD');
-
 $cfg['Servers'][$i]['user'] = 'admin';
 
 $cfg['Servers'][$i]['compress'] = false;
