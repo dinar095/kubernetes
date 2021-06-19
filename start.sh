@@ -9,6 +9,8 @@ docker build ftps/. -t ftps_img
 docker build nginx/. -t nginx-img
 docker build wordpress/. -t wordpress
 docker build phpmyadmin/. -t phpmyadmin
+docker build influxdb/. -t influxdb
+docker build grafana/. -t grafana
 docker pull metallb/speaker:v0.8.2
 docker pull metallb/controller:v0.8.2
 kubectl apply -f configmap.yaml
@@ -16,6 +18,8 @@ kubectl apply -f nginx/srcs/nginx.yaml
 kubectl apply -f ftps/srcs/ftps.yaml
 kubectl apply -f wordpress/srcs/wp.yaml
 kubectl apply -f phpmyadmin/srcs/php.yaml
+kubectl apply -f influxdb/srcs/influx.yaml
+kubectl apply -f grafana/srcs/grafana.yaml
 minikube dashboard
 
 #kubectl delete -f configmap.yaml
